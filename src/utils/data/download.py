@@ -1,6 +1,6 @@
 import os
 
-def download_dataset(name:str="cifar10", path:str=""):
+def download_dataset(name:str="cifar10", path:str="."):
     url = ""
     if name == "cifar10":
         url = "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
@@ -11,8 +11,18 @@ def download_dataset(name:str="cifar10", path:str=""):
         return
     
     full_path = path + "/" + name
-    dataset_path = full_path + "/" + name
+    os.system("mkdir -p {}".format(full_path))
 
-    os.system("mkdir -p {}".format(dataset_path))
-    os.system("wget -O {} {}".format(full_path, url))
+    if name == "cifar10":
+        os.system("wget -P {} {}".format(full_path, url))
+        raw_file = full_path + "/" + "cifar-10-python.tar.gz"
+        os.system("tar -xf {} -C {}".format(raw_file, full_path))
+    elif name == "imagenet1000":
+        os.chdir(full_path)
+        os.system("kaggle datasets download ifigotin/imagenetmini-1000")
+        os.system("unzip imagenetmini-1000.zip")
     
+
+if __name__ == "__main__":
+    download_dataset(name="cifar10", path="datasets")
+    download_dataset(name="imagenet1000", path="datasets")
