@@ -1,0 +1,19 @@
+{
+    "client_configs": {
+        "num_clients": 2,
+        "num_epochs": 1,
+        "local_optimizer_path": "",
+        "local_optimizer_func_name": ""
+    },
+    "server_configs": {
+        "num_communication": 1,
+        "server_id": 0,
+        "global_model_path": "",
+        "global_model_func_name": ""
+    },
+    "other_configs": {
+        "training_loss_func": "",
+        "custom_action_each_round": "",
+        "device": "cpu"
+    }
+}
