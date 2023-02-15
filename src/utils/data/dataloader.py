@@ -1,14 +1,7 @@
 # from torchvision.datasets import CIFAR10
 
 
-
-
-
-
-
-
-
-def cifar10_unpickle(path:str="datasets/cifar10/cifar-10-batches-py", pickle_file:str="all"):
+def cifar10_unpickle(path: str = "datasets/cifar10/cifar-10-batches-py", pickle_file: str = "all"):
     """Unpickle the CIFAR-10 dataset.
 
     Args:
@@ -26,7 +19,7 @@ def cifar10_unpickle(path:str="datasets/cifar10/cifar-10-batches-py", pickle_fil
     """
     import pickle
     import glob
-    
+
     if pickle_file == "all":
         pattern = path + "/" + "*batch*"
         pickle_batches = glob.glob(pattern)

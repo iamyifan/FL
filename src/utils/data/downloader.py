@@ -26,5 +26,5 @@ def download_dataset(name:str="cifar10", path:str=".", unzip:bool=True, traverse
 
 
 if __name__ == "__main__":
-    download_dataset(name="cifar10", path="datasets", unzip=True, traverse=True)
+    # download_dataset(name="cifar10", path="datasets", unzip=True, traverse=True)
     download_dataset(name="imagenet1000", path="datasets", unzip=True, traverse=True)
