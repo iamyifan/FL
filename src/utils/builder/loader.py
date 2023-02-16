@@ -7,10 +7,12 @@ def load_config(config_path: str):
 
 
 def load_model(module_path: str, model_func_name: str):
+    from copy import deepcopy
     from importlib.machinery import SourceFileLoader
     module_name = module_path.split("/")[-1]
     module = SourceFileLoader(module_name, module_path).load_module()
     model = eval("module.{}()".format(model_func_name))
+    # return deepcopy(model)
     return model
 
 

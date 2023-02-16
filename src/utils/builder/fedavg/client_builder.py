@@ -14,8 +14,7 @@ def fedavg_client_builder(configs, *args, **kwargs):
                                client_configs["local_optimizer_func_name"])
     dataloader = load_dataloader(client_configs["local_dataloader_path"],
                                  client_configs["local_dataloader_func_name"])
-    model = load_model(server_configs["global_model_path"],
-                       server_configs["global_model_func_name"])
+    
     device = other_configs["device"]
     ##### DO NOT MODIFY #####
     send_gradient = False      # update model with aggregated params, default True
@@ -28,6 +27,8 @@ def fedavg_client_builder(configs, *args, **kwargs):
     ##### NOT USED IN PARAMS-UPDATED MODE, SET AS DEFAULT VALUE IN AIJACK #####
 
     for i in range(client_configs["num_clients"]):
+        model = load_model(server_configs["global_model_path"],
+                           server_configs["global_model_func_name"])
         client = FedAVGClient(model=model.to(device),
                               user_id=i,
                               lr=lr,

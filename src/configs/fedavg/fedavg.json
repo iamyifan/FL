@@ -1,6 +1,6 @@
 {
     "client_configs": {
-        "num_clients": 2,
+        "num_clients": 3,
         "num_epochs": 1,
         "local_optimizer_path": "/root/FL/src/configs/fedavg/optimizer.py",
         "local_optimizer_func_name": "my_optimizer",
@@ -8,7 +8,7 @@
         "local_dataloader_func_name": "my_dataloader"
     },
     "server_configs": {
-        "num_communication": 1,
+        "num_communication": 2,
         "server_id": 0,
         "global_model_path": "/root/FL/src/configs/fedavg/global_model.py",
         "global_model_func_name": "my_resnet18"

@@ -1,8 +1,8 @@
-def my_resnet18(weights='DEFAULT'):
+def my_resnet18(pretrained=True):
     # import timm
     # return timm.create_model('resnet18', pretrained=True)
     from torchvision.models import resnet18
-    return resnet18(weights=weights)
+    return resnet18(pretrained=pretrained)
 
 
 if __name__ == "__main__":

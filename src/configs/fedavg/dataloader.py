@@ -1,4 +1,5 @@
 def my_dataloader(configs):
+    import torch
     from torchvision import transforms
     from torchvision.datasets import CIFAR10
     from torch.utils.data import DataLoader, random_split
@@ -10,15 +11,20 @@ def my_dataloader(configs):
     ])
 
     num_clients = configs["client_configs"]["num_clients"]
-    batch_size = 32
+    batch_size = 64
 
     cifar10 = CIFAR10("datasets/cifar10/",
                       train=True,
                       transform=transform,
                       download=False)
-    # print(len(cifar10))
+    # average splitted
+    lengths = torch.tensor([int(len(cifar10) / num_clients) for _ in range(num_clients - 1)])
+    lengths = torch.cat((lengths, torch.tensor([len(cifar10) - lengths.sum()])))
+    
     splited_cifar10 = random_split(
-        cifar10, lengths=[int(len(cifar10)/num_clients) for _ in range(num_clients)])
+        cifar10,
+        lengths=lengths,
+        generator=torch.Generator().manual_seed(42))
     dataloaders = [DataLoader(d, batch_size=batch_size, shuffle=True)
                    for d in splited_cifar10]
 
